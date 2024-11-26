@@ -1,6 +1,7 @@
 import torch
 from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 import matplotlib.pyplot as plt
+import os
 
 torch.cuda.empty_cache()
 model_id = "stabilityai/stable-diffusion-2-1"
@@ -28,4 +29,8 @@ plt.axis("off")
 plt.show()
 
 # Save the image
-image.save("generated_image.png")
+# Create assets directory if it doesn't exist
+os.makedirs("assets", exist_ok=True)
+
+# Save the image to assets folder
+image.save(os.path.join("assets", "generated_image.png"))
